@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script>
+			window.onload = function(){
+				
+				var color =
+				["red","blue","yellow","green","pink","orange"];
+				
+				
+				var d1 = document.getElementById("d1");
+				d1.onmouseover = function(){
+					this.style.backgroundColor="blue";
+				}
+				d1.onmouseout = function(){
+					this.style.backgroundColor="red";
+				}
+				
+				d1.onmousemove = function(){
+					var t  = parseInt(Math.random()*color.length);
+					this.style.backgroundColor=color[t];
+				}
+				
+			}
+		</script>
+	</head>
+	<body>
+		<div id="d1" style="width: 100px;height: 100px;background: red;"></div>
+	</body>
+</html>

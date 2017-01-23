@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{marign:0px auto;text-decoration: none;}
+			.d1{background: #FCFBE9;width: 600px;border: 5px solid #9AA0A3;margin:0px auto;text-align: center;}
+			h1{color:white;background: #99D9EA;text-align: center;font-family: "微软雅黑";margin: 0px;margin-bottom: 20px;padding:20px 0px;}
+			.d1 div{margin-bottom:10px ;line-height: 30px;}
+			.d1 input[type=text]{height: 26px;width: 300px;border: none;border-bottom: 1px solid gray;font-size: 20px;background: #FCFBE9;}
+			.d1 label{color:#633A31;font-family:arial;font-size: 24px;}
+			.d1 input[type=button]{width: 100px;height: 40px;margin-right: 10px;}
+			
+			.d2{width:600px;margin: 0px auto;margin-top: 50px;}
+			.d2 table{width: 100%;text-align: center;border-collapse: collapse;border: 1px solid #076894;}
+			table td,th{height: 40px;}
+			th{font-size: 20px;background: #1887BA;color:white}
+			td{font-size:16px}
+			.td1{width: 100px;}
+			.tr1{background: #F1EDED}
+			.tr2{background: #C1E9F3}
+			
+			
+			tr:hover{background: #C1E9F3;cursor:pointer}
+			
+			.d2 a:hover{color:red}
+			 .d2 a{color:#1D7F12}
+			.d3 a{background: cornflowerblue;font-family: arial;color:#FFFFFF;display: inline-block;width: 100px;line-height: 40px;text-align: center;margin-top: 20px;}
+			
+			/*
+			.dd1{width:100px;height: 100px;border: 1px solid red;}
+			
+			.dd2{background:blue;border: 5px solid yellow}*/
+		</style>
+		<script>
+			window.onload = function(){
+				
+				var add = document.getElementById("add");
+				var tbody = document.getElementById("tbody");
+				var num = document.getElementById("num");
+				var name = document.getElementById("name");
+				var sex = document.getElementById("sex");
+				var age = document.getElementById("age");	
+				var count = 0;
+				var re = document.getElementById("reset");
+				
+				re.onclick = function(){
+					var icks = document.querySelectorAll
+					("input[type=text]");
+					for(var i = 0;i<icks.length;i++){
+						icks[i].value= "";
+					}
+				}
+				
+				
+				var ck = document.getElementById("ck");
+				
+				ck.onclick = function(){
+					var icks = document.querySelectorAll("input[type=checkbox]");
+					for(var i=0;i<icks.length;i++){
+						if(this.id == icks[i].id){
+							continue;
+						}
+						icks[i].checked = this.checked;
+					}
+					
+					if(this.checked){
+						var c1 = tbody.children;
+						for(var i= 0 ;i<c1.length;i++){
+							c1[i].className = c1[i].className+" tr2";
+						}
+					}else{
+						var c1 = tbody.children;
+						for(var i= 0 ;i<c1.length;i++){
+							var cn = c1[i].className;
+							cn = cn.split(" ")[0];
+							c1[i].className = cn;
+						}
+					}
+					
+					
+				}
+				
+				
+				add.onclick = function(){
+					
+					var t1 = document.createElement("td");
+					var ip = document.createElement("input");
+					ip.type="checkbox";
+					
+					t1.appendChild(ip);
+					
+					var t2 = document.createElement("td");
+					
+						t2.innerText = num.value;
+					
+					
+					var t3 = document.createElement("td");
+					
+						t3.innerText = name.value;
+					
+					var t4 = document.createElement("td");
+						t4.innerText = sex.value;
+					
+					var t5 = document.createElement("td");
+						t5.innerText = age.value;
+						
+					var t6 = document.createElement("td");
+						
+					var a1 = document.createElement("a");
+					a1.innerText = "修改";
+					a1.onclick = function(){
+						
+					}
+					
+					var sp = document.createElement("span");
+					sp.innerHTML = "&nbsp;|&nbsp;";
+					
+					var a2 = document.createElement("a");
+					a2.innerText = "删除";
+						
+					a2.onclick = function(){
+						tbody.removeChild(this.parentNode.parentNode);
+						var c1 = tbody.children;
+						for(var i= 0 ;i<c1.length;i++){
+							if(i%2 == 0){
+								c1[i].className = "tr1";
+							}else{
+								c1[i].className="";
+							}
+							
+						}
+						
+						
+					}
+					
+					
+					
+					
+					t6.appendChild(a1);
+					
+					t6.appendChild(sp);
+					t6.appendChild(a2);	
+					var tr = document.createElement("tr");
+					
+					tr.appendChild(t1);
+					tr.appendChild(t2);
+					tr.appendChild(t3);
+					tr.appendChild(t4);
+					tr.appendChild(t5);
+					tr.appendChild(t6);
+					
+					if(count++%2 == 0){
+						tr.className = "tr1";
+					}
+					
+					
+					tr.onclick = function(){
+						var cn = this.className;
+						if(ip.checked){
+							ip.checked =false;
+							cn = cn.split(" ")[0];
+						}else{
+							ip.checked =true;
+							cn=cn+" tr2";
+						}
+						this.className = cn;
+					}
+					
+					
+					tbody.appendChild(tr);
+					
+				}
+				
+				
+			}
+			
+		</script>
+	</head>
+	<body>
+		<div class="d1">
+			<h1>学生信息管理</h1>
+			<div style="">
+				<div>
+					<label>编号:</label><input type="text" id="num"/>
+				</div>
+				<div>
+					<label>姓名:</label><input type="text" id="name"/>
+				</div>
+				<div>
+					<label>性别:</label><input type="text" id="sex"/>
+				</div>
+				<div>
+					<label>年龄:</label><input type="text" id="age"/>
+				</div>
+				<div>
+					<input type="button"  value="添加" id="add"/>
+					<input type="button"  value="重置" id="reset"/>
+				</div>
+			</div>
+		</div>
+		<div class="d2">
+			<table border="1">
+				<thead>
+					<tr>
+						<th><input type="checkbox" id="ck"/></th>
+						<th>编号</th>
+						<th>姓名</th>
+						<th>性别</th>
+						<th>年龄</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody  id="tbody">
+					
+				</tbody>
+			</table>
+			<div class="d3">
+				<a href="#" id="bt_del">批量删除</a>
+			</div>
+		</div>
+		
+	<!--	<div class="dd1 dd2"></div>
+		-->
+		
+		
+		
+	</body>
+</html>

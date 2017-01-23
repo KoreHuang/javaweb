@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script>
+			window.onload = function(){
+				var bt = document.getElementById("bt");
+				bt.onclick = function(){
+					var ip1 = document.getElementById("ip1");
+					var ip2 = document.getElementById("ip2");
+					var ip3 = document.getElementById("ip3");
+					var ip4 = document.getElementById("ip4");
+					
+					switch(ip2.value){
+						case "+": ip4.value = parseInt(ip1.value)+parseInt(ip3.value);break;
+						case "-": ip4.value = ip1.value - ip3.value; break;
+						case "*": ip4.value = ip1.value * ip3.value; break;
+						case "/": ip4.value = ip1.value / ip3.value; break;
+					}
+					
+					
+				}//bt end
+				
+				var p_all = document.getElementById("p_all");
+				var d1 = document.getElementById("d1");
+				var ips = d1.getElementsByTagName("input");
+				p_all.onclick = function(){
+					for(var i=0;i<ips.length;i++){
+						if(ips[i].id == 'p_all'){
+							continue;
+						}
+						ips[i].checked = this.checked;
+					}
+				}
+				
+				for(var i=1;i<ips.length;i++){
+					ips[i].onclick = function(){
+						if(!this.checked){
+							p_all.checked = false;
+							return;
+						}
+						var b = true;
+						for(var i=1;i<ips.length;i++){
+							if(ips[i].checked == false){
+								b =  false;
+								break;
+							}
+						}
+						p_all.checked = b;	
+					}
+				}
+				
+				
+			}
+		</script>
+	</head>
+	<body>
+		<div style="border: 1px solid blue;margin-bottom: 100px;padding: 20px;">
+		<input type="text"  id="ip1"/>
+		<input type="text" style="width: 20px;" id="ip2"/>
+		<input type="text" id="ip3"/>
+		<input type="button" value="=" id="bt"/>
+		<input type="text" id="ip4"/>
+		</div>
+		
+		<div style="border: 1px solid red;" id="d1">
+		<input  type="checkbox" id="p_all"/>全选/全不选<br/>
+		<input  type="checkbox" />宫保鸡丁<br/>
+		<input  type="checkbox" />黄焖鸡<br/>
+		<input  type="checkbox" />鱼香茄子<br/>
+		<input  type="checkbox" />小黄鱼<br/>
+		<input  type="checkbox" />大盘鸡<br/>
+		</div>
+	</body>
+</html>

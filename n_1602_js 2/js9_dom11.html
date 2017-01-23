@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script>
+			window.onload = function(){
+				var aList = document.getElementsByTagName("a");
+				
+				for(var i=0;i<aList.length;i++){
+					aList[i].onclick = function(){
+						var p = this.parentNode;
+						var p2 = p.parentNode;
+						p2.removeChild(p);
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<input type="button" id="bt" />
+		<ul>
+			<li>熊大<a href="#">删除</a></li>
+			<li>熊二<a href="#">删除</a></li>
+			<li>光头强<a href="#">删除</a></li>
+		</ul>
+	</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script>
+			window.onload = function(){
+				var im = document.getElementById("im");
+				im.onmouseover = function(){
+					this.src="img/j2.jpg";
+				}
+				
+				im.onmouseout = function(){
+					this.src="img/j1.jpg";
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<img id="im" src="img/j1.jpg" width="200" height="200"/>
+	</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{marign:0px auto;padding:0px;text-decoration: none;
+			font-family: "微软雅黑";}
+			#d1{width:800px;height: 150px;position: relative;
+			margin: 0px auto;top:50px;border: 1px solid red;overflow: hidden;}
+			#d1 ul{width:1000px;list-style: none;position:absolute;
+			border: 1px solid blue;}
+			#d1 ul:after{content: "";display: block;clear: both;}
+			#d1 ul li{border:1px solid red;float: left;width: 100px;
+			height: 100px;background: yellow;margin-right: 10px;}	
+		</style>
+		
+	</head>
+	<body>
+		<div id="d1">
+			<ul id="uu">
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+				<li>6</li>
+				<li>7</li>
+			</ul>
+		</div>
+		<script>
+			var speed = 1;
+			var uu = document.getElementById("uu");
+			var cL = uu.children;
+			var tw = cL.length*(cL[0].offsetWidth+10);
+			var html = uu.innerHTML;
+			uu.innerHTML += html;
+			uu.style.width = tw*2+"px";
+			var timer = null;
+			function move(){
+				timer = setInterval(function(){
+					var left = uu.offsetLeft;
+					
+					if(left <= -tw){
+						uu.style.left = "0px";
+						return;
+					}
+					uu.style.left=left - speed+"px";		
+				},20);
+			}
+			
+			var cList = uu.getElementsByTagName("li");
+			for(var i=0;i<cList.length;i++){
+				cList[i].onmouseover = function(){
+					clearInterval(timer);
+				}
+				cList[i].onmouseout = function(){
+					move();
+				}
+			}
+			
+			
+			move();
+			
+			
+		</script>
+	</body>
+</html>

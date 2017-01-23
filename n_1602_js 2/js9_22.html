@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script>
+			window.onload = function(){
+				var a1 = document.getElementById("a1");
+				var a2 = document.getElementById("a2");
+				
+				a1.onclick = function(){
+					var obj = this.previousElementSibling;
+					var msg = obj.innerText;
+					obj.innerText = this.innerText;
+					this.innerText = msg;
+				}
+				
+				a2.onclick = function(){
+					var obj = this.nextElementSibling;
+					var msg = obj.innerText;
+					obj.innerText = this.innerText;
+					this.innerText = msg;
+				}
+				
+			}
+		</script>
+	</head>
+	<body>
+		<ul>
+			<li>prev</li>
+			<li id="a1">上一个元素</li>
+			<li id="a2">下一个元素</li>
+			<li>next</li>
+		</ul>
+	</body>
+</html>

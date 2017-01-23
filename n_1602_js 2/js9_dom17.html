@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script>
+			window.onload = function(){
+				var imgs = ["img/j1.jpg","img/j2.jpg","img/j3.jpg",
+							"img/j4.jpg","img/j5.jpg","img/j6.jpg"];
+							
+				var im = document.getElementById("im");
+				var timer = null;
+				var i = 0;
+				im.onmouseover = function(){
+					var thiz = this;
+					timer = setInterval(function(){
+						thiz.src = imgs[i++%imgs.length];
+					},1000);
+				}
+				
+				im.onmouseout = function(){
+					clearInterval(timer);
+				}
+				
+			}
+		</script>
+	</head>
+	<body>
+		<img src="img/j1.jpg" width="300" height="230" id="im"/>
+	</body>
+</html>

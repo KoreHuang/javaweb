@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			img{width: 200px;height: 200px;opacity: 0.5;}			
+		</style>
+		<script>
+		
+		
+			window.onload = function(){
+				var im = document.getElementById("im");
+				im.onmouseover = function(){
+					var speed  = 6;
+					var timer = setInterval(function(){
+						if(speed == 10){
+							clearInterval(timer);
+						}
+						im.style.opacity =speed++/10; 
+						
+					},100);
+				}
+				
+				im.onmouseout = function(){
+					var speed  = 10;
+					var timer = setInterval(function(){
+						if(speed == 5){
+							clearInterval(timer);
+						}
+						im.style.opacity =speed--/10; 
+						
+					},100);
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<img src="img/j1.jpg" id="im"/>
+	</body>
+</html>

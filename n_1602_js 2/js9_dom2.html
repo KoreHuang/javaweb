@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script>
+			window.onload = function (){
+				var bt = document.getElementById("bt");
+				bt.onclick = function(){
+					var ip1 = document.getElementById("ip1");
+					var ip2 = document.getElementById("ip2");
+					var ip3 = document.getElementById("ip3");
+					ip3.value = parseInt(ip1.value)+parseInt(ip2.value);
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<input type="text" id="ip1"/>+
+		<input type="text" id="ip2"/>
+		<input type="button" value="=" id="bt"/>
+		<input type="text" id="ip3"/>
+	</body>
+</html>

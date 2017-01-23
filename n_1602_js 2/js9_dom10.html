@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script>
+			window.onload = function(){
+				var bt = document.getElementById("bt");
+				var uu = document.getElementById("uu");
+				var ip1 = document.getElementById("ip1");
+				bt.onclick = function(){
+					var nLi = document.createElement("li");
+					nLi.innerText = ip1.value;
+					var cList = uu.children;
+					uu.insertBefore(nLi,cList[0]);
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<input type="text" id="ip1" /><input type="button" value="发表" id="bt"/>
+		<ul id="uu">
+		</ul>
+	</body>
+</html>

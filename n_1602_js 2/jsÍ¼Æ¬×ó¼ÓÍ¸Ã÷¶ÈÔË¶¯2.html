@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			*{margin: 0px;}
+			#d1{width: 500px;height: 300px;margin: 0px auto;margin-top:100px;position: relative;border: 1px solid red;overflow: hidden;}
+			#d2{width: 100px;margin: 0px auto;text-align: center;}
+			img{width:100%;height: 100%;position: absolute;}
+		</style>
+		<script>
+			window.onload = function(){
+				var d1 = document.getElementById("d1");
+				var imgs = d1.children;
+				var index = 10;
+				for(var i=0;i<imgs.length;i++){
+					imgs[i].style.zIndex = index - i;
+				}
+				
+				var bt2 = document.getElementById("bt2");
+				var next = 0;
+				var prev = 0; 
+				var min = -999;
+				var flag = false;
+				bt2.onclick = function(){
+					next  = next%imgs.length;
+					//将要运动的元素层级提升
+					imgs[next].style.zIndex = ++index;
+					imgs[next].style.opacity = 0.5;
+					//将上一个元素拉回
+					if(flag){
+						imgs[prev].style.left = "0px";
+						imgs[prev].style.top = "0px";
+						imgs[prev].style.opacity = 1;
+						imgs[prev].style.zIndex = min--;
+						prev = next;
+					}
+					flag = true;
+					startMove(imgs[next++],{left:500,top:300});
+				}
+			}
+			var timer = null;
+			function startMove(obj,tar){
+				clearInterval(timer);
+				timer = setInterval(function(){
+					var flag = true;
+					for(var attr in tar){
+						var pNname = attr.substring(0,1).toUpperCase()+
+								attr.substring(1);
+						var t = obj["offset"+pNname];
+						var speed = (tar[attr] - t)/7;
+						speed = speed >0?Math.ceil(speed):Math.floor(speed);
+						if(t != tar[attr]){
+							flag = false;
+						}
+						obj.style[attr] = t+speed+"px";
+					}
+					if(flag){
+						clearInterval(timer);
+					}
+				},20);	
+			}
+			
+			
+		</script>
+	</head>
+	<body>
+		<div id="d1">
+			<img src="img/j1.jpg"/>
+			<img src="img/j2.jpg"/>
+			<img src="img/j3.jpg"/>
+			<img src="img/j4.jpg"/>
+			<img src="img/j5.jpg"/>
+			<img src="img/j6.jpg"/>
+		</div>
+		<div id="d2">
+			<input type="button" value="向左" id="bt1"/>
+			<input type="button" value="向右" id="bt2"/>
+		</div>
+	</body>
+</html>

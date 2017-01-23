@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			*{margin: 0px;}
+		</style>
+		<script>
+			window.onload = function(){
+				var b1 = document.getElementById("bt1");
+				var b2 = document.getElementById("bt2");
+				var d1 = document.getElementById("d1");
+				var timer = null;
+				b1.onclick = function(){
+					
+					clearInterval(timer);
+					
+					var speed = 0;
+					timer = setInterval(function(){
+							var left = d1.offsetLeft;
+							speed = (300 - left)/7;
+							if(speed < 1 ){
+								speed = 1;
+							}
+							
+							if(left == 300){
+								clearInterval(timer);
+								return;
+							}
+							
+							
+							d1.style.left =left+ speed+"px";
+						},10);
+					}
+				
+				b2.onclick = function(){
+					clearInterval(timer);
+					var speed = 0;
+					timer = setInterval(function(){
+							var left = d1.offsetLeft;
+							speed = (0 - left)/7;
+							if(speed>-1){
+								speed = -1;
+							}
+							if(left == 0){
+								clearInterval(timer);
+								return;
+							}
+							d1.style.left =left+ speed+"px";
+						},10);
+					}
+				
+				
+			}
+		</script>
+	</head>
+	<body>
+		<input type="button" value="LEFT" id="bt1"/>
+		<input type="button" value="RIGHT" id="bt2"/>
+		<div style="position:absolute;width: 100px;height:100px;background: blueviolet;" id="d1"></div>
+		<div style="width: 1px;height: 500px;background: red;position:absolute;left:300px"></div>
+	</body>
+</html>
